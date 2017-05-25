@@ -1,6 +1,19 @@
 //Global Variables
 var foreground = true; //variable to keep track of which layer player will be in
 var backgroundGroup; // background
+<<<<<<< HEAD
+var doorGroup;
+var group0; //interactable objects in the background
+var group1; //right in front of background
+var group2; //middle layer
+var group3; //top layer
+var enemyGroup; //group for enemies
+var obstacleGroup;	//Obstacle group for obejcts with full hit box
+var obstacleClimbGroup; //Obstacle group for objects that player can climb and only top hitbox
+var isClimbing = false; //variable to check if player is climbing or not
+var canControl = true; //variable to check if player has control at the moment
+var player;
+=======
 var doorGroup; //group to distinguish what will be a door
 var group1; //right in front of background
 var group2; //middle layer
@@ -12,11 +25,17 @@ var group4; //Layer above everything to do lighting
 var isClimbing = false; //variable to check if player is climbing or not
 var canControl = true; //variable to check if player has control at the moment
 var player; //the player
+>>>>>>> d4b33916dbf7c9c6ac7c68cf9e060a1847a81ef0
 var hitPlatform; //did player hit the ground or an object?
 var climb; //can the player climb right now?
 var distanceFromGround; //player's y-distance from the ground
 var door1; //door in the starting room
+<<<<<<< HEAD
+var ground;
+var canClimb = false;
+=======
 var ground; //the ground player stannds on
+>>>>>>> d4b33916dbf7c9c6ac7c68cf9e060a1847a81ef0
 
 var playState = {
 	preload: function(){
@@ -36,6 +55,13 @@ var playState = {
 		enemyGroup = game.add.group(); // enemies
 		obstacleGroup = game.add.group(); // obstacles
 		obstacleClimbGroup = game.add.group(); //climbable obstacles
+<<<<<<< HEAD
+		platforms = game.add.group();
+
+
+		generateLevel('level0');
+
+=======
 		group3 = game.add.group();//top layer
 		group4 = game.add.group();//Lighting layer
 		platforms = game.add.group();
@@ -43,6 +69,7 @@ var playState = {
 
 		generateLevel('level0');
 
+>>>>>>> d4b33916dbf7c9c6ac7c68cf9e060a1847a81ef0
 		game.world.bringToTop(group3);
 		game.world.bringToTop(group4);
 
@@ -120,17 +147,21 @@ var playState = {
 
 		//Movement system
 		if(game.input.keyboard.isDown(Phaser.Keyboard.UP)){
+<<<<<<< HEAD
+			console.log(player.body.velocity.y);
+=======
 			console.log(enemyHitPlatform);
+>>>>>>> d4b33916dbf7c9c6ac7c68cf9e060a1847a81ef0
 		}
 		if(game.input.keyboard.isDown(Phaser.Keyboard.A) && canControl == true){
 			//move left
 			player.animations.play('walkLeft');
-			player.body.velocity.x = -150;
+			player.body.velocity.x = -220;
 		}
 		else if(game.input.keyboard.isDown(Phaser.Keyboard.D) && canControl ==true){
 			//move right
 			player.animations.play('walkRight');
-			player.body.velocity.x = 150;
+			player.body.velocity.x = 220;
 		}
 
 		else{
@@ -159,7 +190,11 @@ var playState = {
 		//Scenario checks to see if you can jump
 		//Touching the ground, while climbing, in front of a climbable object on the ground, on top of obstacleGroup
 		if((hitPlatform && distanceFromGround <= 5) || isClimbing == true || (climb == true && distanceFromGround <= 5)|| player.body.touching.down){
+<<<<<<< HEAD
+			player.body.velocity.y = -250; //jump height
+=======
 			player.body.velocity.y = -200; //jump height
+>>>>>>> d4b33916dbf7c9c6ac7c68cf9e060a1847a81ef0
 			isClimbing = false;
 			//play animation
 		}
@@ -188,11 +223,26 @@ var playState = {
 var generateLevel = function(levelName) {
 
 		console.log('generated');
+<<<<<<< HEAD
+		
+		game.world.setBounds(0, 0, 2400, 600);
+=======
+>>>>>>> d4b33916dbf7c9c6ac7c68cf9e060a1847a81ef0
 
 		backgroundGroup.forEach(function (c) {c.kill();});
 		doorGroup.forEach(function (c) {c.kill();});
 		group1.forEach(function (c) {c.kill();});
 		group2.forEach(function (c) {c.kill();});
+<<<<<<< HEAD
+		group3.forEach(function (c) {c.kill();});
+		enemyGroup.forEach(function (c) {c.kill();});
+		obstacleGroup.forEach(function (c) {c.kill();}); 
+		obstacleClimbGroup.forEach(function (c) {c.kill();}); 
+
+
+		var levelData = game.cache.getJSON(levelName);
+
+=======
 		enemyGroup.forEach(function (c) {c.kill();});
 		obstacleGroup.forEach(function (c) {c.kill();}); 
 		obstacleClimbGroup.forEach(function (c) {c.kill();});
@@ -205,14 +255,18 @@ var generateLevel = function(levelName) {
 		//Change this to work per level in the JSON
 		game.world.setBounds(0, 0, 2400, 600);
 
+>>>>>>> d4b33916dbf7c9c6ac7c68cf9e060a1847a81ef0
 		var background = game.add.sprite(0,0, levelData.backgroundData);
 		game.world.sendToBack(background);
 		backgroundGroup.add(background);
 
+<<<<<<< HEAD
+=======
 		//Lighting filter for room
 		var shadows = game.add.sprite(0,0, levelData.shadowData); //Currently set to hall one, eventually changed to load from JSON file
 		group4.add(shadows);
 
+>>>>>>> d4b33916dbf7c9c6ac7c68cf9e060a1847a81ef0
 		// generate all doors from the data
 		for (var index = 0; index < levelData.doorData.length; index++) {
 			// set element to the object and use it's parameters
@@ -239,7 +293,11 @@ var generateLevel = function(levelName) {
 
 
 		//Player object
+<<<<<<< HEAD
+		player = game.add.sprite(32, 400, 'player');
+=======
 		player = game.add.sprite(32, game.world.height - 150, 'player');
+>>>>>>> d4b33916dbf7c9c6ac7c68cf9e060a1847a81ef0
 		//player properties
 		player.anchor.set(0.5);
 		player.scale.x = 0.075;
@@ -258,9 +316,17 @@ var generateLevel = function(levelName) {
 		for (var index = 0; index < levelData.enemyData.length; index++) {
 			// set element to the object and use it's parameters
 			var enemyTemp = new Enemy(game, levelData.enemyData[index].frame, levelData.enemyData[index].xPos, levelData.enemyData[index].yPos, levelData.enemyData[index].speed, levelData.enemyData[index].walkDist, levelData.enemyData[index].turnTime, levelData.enemyData[index].facing, player);
+<<<<<<< HEAD
+			enemyTemp.scale.x = 0.17;
+			enemyTemp.scale.y = 0.145;
+			console.log(enemyTemp.target);
+			game.add.existing(enemyTemp);
+			group2.add(enemyTemp);
+=======
 			console.log(enemyTemp.target);
 			game.add.existing(enemyTemp);
 			enemyGroup.add(enemyTemp);
+>>>>>>> d4b33916dbf7c9c6ac7c68cf9e060a1847a81ef0
 
 			console.log(enemyTemp);
 			console.log('make');
@@ -269,8 +335,13 @@ var generateLevel = function(levelName) {
 		
 		// platforms
 		platforms.enableBody = true;
+<<<<<<< HEAD
+		ground = platforms.create(0, game.world.height - 100, 'grass'); //Note use a better placeholder art next time
+		ground.scale.setTo(50, 0.5);
+=======
 		ground = platforms.create(0, game.world.height - 64, 'grass'); //Note use a better placeholder art next time
 		ground.scale.setTo(40, 0.5);
+>>>>>>> d4b33916dbf7c9c6ac7c68cf9e060a1847a81ef0
 		ground.body.immovable = true; 
 		ground.alpha = 0;
 

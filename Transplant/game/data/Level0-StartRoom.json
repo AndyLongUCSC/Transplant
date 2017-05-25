@@ -4,6 +4,10 @@
 	"obstacleData" : [],
 	"enemyData" : [],
 	"doorData" : [
+<<<<<<< HEAD
+		{"frame" : "normalDoor", "name" : "door1", "leadsTo" : "level1", "xPos" : 610, "yPos" : 325 }
+=======
 		{"frame" : "normalDoor", "name" : "door1", "leadsTo" : "level1", "xPos" : 610, "yPos" : 407 }
+>>>>>>> d4b33916dbf7c9c6ac7c68cf9e060a1847a81ef0
 	]
 }
